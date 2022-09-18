@@ -10,6 +10,9 @@ class Persona:
         
         Persona.all.append(self)
     
+    def mod(self, new):
+        self.estd_civil = new
+    
     
     
     @classmethod
@@ -27,7 +30,7 @@ class Persona:
             )
     
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}('{self.nombre}', '{self.apellido}', '{self.id}', '{self.estd_civil}')"
+        return f"{self.__class__.__name__} ('{self.nombre}', '{self.apellido}', '{self.id}', '{self.estd_civil}')"
     
 
 class Estudiante(Persona):
@@ -38,6 +41,12 @@ class Estudiante(Persona):
         )
         
         self.curso = curso
+        
+    def mod(self, new):
+        self.curso = new
+        
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__} ('{self.nombre}', '{self.apellido}', '{self.id}', '{self.estd_civil}', '{self.curso}')"
 
 class Empleado(Persona):
    
@@ -48,6 +57,9 @@ class Empleado(Persona):
         
         self.ano_inco = ano_inco
         
+        def __repr__(self) -> str:
+            return f"{self.__class__.__name__}('{self.nombre}', '{self.apellido}', '{self.id}', '{self.estd_civil}', '{self.ano.inicio}')"
+        
 class Emp_administrativo(Empleado):
     def __init__(self, nombre, apellido, id, estd_civil, ano_inco, dependencia):
         super().__init__(
@@ -55,12 +67,26 @@ class Emp_administrativo(Empleado):
             )
         self.dependencia = dependencia
         
+        def __repr__(self) -> str:
+            return f"{self.__class__.__name__}('{self.nombre}', '{self.apellido}', '{self.id}', '{self.estd_civil}', '{self.ano.inicio}', '{self.dependencia}')"
+        
+        def mod(self, new):
+            self.dependencia = new
+            
 class Emp_profe(Empleado):
     def __init__(self, nombre, apellido, id, estd_civil, ano_inco, facultad):
         super().__init__(
             nombre, apellido, id, estd_civil, ano_inco
             )
         self.facultad = facultad
+        
+        def __repr__(self) -> str:
+            return f"{self.__class__.__name__}('{self.nombre}', '{self.apellido}', '{self.id}', '{self.estd_civil}', '{self.ano.inicio}', '{self.facultad}')"
+        
+        def mod(self, new):
+            self.facultad = new
+
+
 
 class Emp_servi(Empleado):
     def __init__(self, nombre, apellido, id, estd_civil, ano_inco, labor):
@@ -68,5 +94,11 @@ class Emp_servi(Empleado):
             nombre, apellido, id, estd_civil, ano_inco
             )
         self.labor = labor
+        
+        def __repr__(self) -> str:
+            return f"{self.__class__.__name__}('{self.nombre}', '{self.apellido}', '{self.id}', '{self.estd_civil}', '{self.ano.inicio}', '{self.labor}')"
+        
+        def mod(self, new):
+            self.facultad = new
 
       
